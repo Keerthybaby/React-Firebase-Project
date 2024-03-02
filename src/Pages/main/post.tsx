@@ -21,6 +21,12 @@ interface like {
   userId: string;
 }
 
+interface PostStyle {
+  display: string;
+  flexDirection?: string | undefined;
+  alignItems: string;
+}
+
 export const Post = (props: Props) => {
   const { post } = props;
   const [user] = useAuthState(auth);
@@ -83,18 +89,33 @@ export const Post = (props: Props) => {
     getLikes();
   }, []);
 
+  // const postStyle: PostStyle = {
+  //   display: "flex",
+  //   flexDirection: "row",
+  //   alignItems: "center"
+  // };
+  
+   
+
   return (
-    <div>
+    <div style={{
+      width: '500px',
+      padding: '20px',
+      border: '1px solid #ccc',
+      borderRadius: '5px',
+      margin: '30px auto',
+     
+    }}>
       <div className="title">
         <h1>{post.title}</h1>
       </div>
 
       <div className="body">
-        <h1>{post.description}</h1>
+        <h1 style={{ fontSize: '20px'}}>{post.description}</h1>
       </div>
 
       <div className="footer">
-        <h1>@{post.username}</h1>
+        <h1 style={{ fontSize: '15px'}}>@{post.username}</h1>
         <button onClick={hasUserLiked ? removeLike : addLike}>
           {hasUserLiked ? <>&#128078;</> : <>&#128077;</>}
         </button>
